@@ -1,0 +1,777 @@
+2025-03-13 16:50:04 info: 📀 Configuració de base de dades carregada {"dialect":"sqlite","path":"/home/nacro/Documents/GitHub/SchoolProjects/DAM-M06-UF02-Fites-Sequelize-Exemple/data/fites.sqlite"}
+2025-03-13 16:50:04 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 16:50:04 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 16:50:04 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 16:50:04 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA foreign_keys = OFF
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 16:50:04 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 16:50:04 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA foreign_keys = ON
+2025-03-13 16:50:04 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 16:50:04 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 16:50:04 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 16:50:04 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 16:50:04 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:50:04 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 16:50:04 debug: Executing (default): INSERT INTO `usuaris` (`id`,`username`,`email`,`password`,`nom`,`data_registre`,`idioma`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 16:50:04 debug: Executing (default): INSERT INTO `videos` (`id`,`titol`,`descripcio`,`url_video`,`data_publicacio`,`visualitzacions`,`likes`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 16:50:04 debug: Executing (default): INSERT INTO `comentaris` (`id`,`text`,`data_creacio`,`createdAt`,`updatedAt`,`usuari_id`,`video_id`) VALUES (NULL,$1,$2,$3,$4,$5,$6);
+2025-03-13 16:50:04 debug: Executing (default): INSERT INTO `valoracions` (`id`,`valoracio`,`createdAt`,`updatedAt`,`usuari_id`,`video_id`) VALUES (NULL,$1,$2,$3,$4,$5);
+2025-03-13 16:52:24 info: 📀 Configuració de base de dades carregada {"dialect":"sqlite","path":"/home/nacro/Documents/GitHub/SchoolProjects/DAM-M06-UF02-Fites-Sequelize-Exemple/exemple-sequelize/src/data/fites.sqlite"}
+2025-03-13 16:52:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 16:52:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 16:52:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 16:52:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA foreign_keys = OFF
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 16:52:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 16:52:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA foreign_keys = ON
+2025-03-13 16:52:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 16:52:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 16:52:24 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 16:52:24 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 16:52:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:24 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 16:52:24 debug: Executing (default): INSERT INTO `usuaris` (`id`,`username`,`email`,`password`,`nom`,`data_registre`,`idioma`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 16:52:24 debug: Executing (default): INSERT INTO `videos` (`id`,`titol`,`descripcio`,`url_video`,`data_publicacio`,`visualitzacions`,`likes`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 16:52:24 debug: Executing (default): INSERT INTO `comentaris` (`id`,`text`,`data_creacio`,`createdAt`,`updatedAt`,`usuari_id`,`video_id`) VALUES (NULL,$1,$2,$3,$4,$5,$6);
+2025-03-13 16:52:24 debug: Executing (default): INSERT INTO `valoracions` (`id`,`valoracio`,`createdAt`,`updatedAt`,`usuari_id`,`video_id`) VALUES (NULL,$1,$2,$3,$4,$5);
+2025-03-13 16:52:46 info: 📀 Configuració de base de dades carregada {"dialect":"sqlite","path":"/home/nacro/Documents/GitHub/SchoolProjects/DAM-M06-UF02-Fites-Sequelize-Exemple/data/fites.sqlite"}
+2025-03-13 16:52:46 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 16:52:46 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 16:52:46 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 16:52:46 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA foreign_keys = OFF
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 16:52:46 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 16:52:46 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA foreign_keys = ON
+2025-03-13 16:52:46 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 16:52:46 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 16:52:46 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 16:52:46 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 16:52:46 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 16:52:46 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 16:52:46 debug: Executing (default): INSERT INTO `usuaris` (`id`,`username`,`email`,`password`,`nom`,`data_registre`,`idioma`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 16:52:46 debug: Executing (default): INSERT INTO `videos` (`id`,`titol`,`descripcio`,`url_video`,`data_publicacio`,`visualitzacions`,`likes`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 16:52:46 debug: Executing (default): INSERT INTO `comentaris` (`id`,`text`,`data_creacio`,`createdAt`,`updatedAt`,`usuari_id`,`video_id`) VALUES (NULL,$1,$2,$3,$4,$5,$6);
+2025-03-13 16:52:46 debug: Executing (default): INSERT INTO `valoracions` (`id`,`valoracio`,`createdAt`,`updatedAt`,`usuari_id`,`video_id`) VALUES (NULL,$1,$2,$3,$4,$5);
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:58:27 debug: Executing (default): INSERT INTO `usuaris` (`id`,`username`,`email`,`password`,`nom`,`data_registre`,`idioma`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 17:58:27 debug: Executing (default): INSERT INTO `usuaris` (`id`,`username`,`email`,`password`,`nom`,`data_registre`,`idioma`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 17:58:27 debug: Executing (default): INSERT INTO `videos` (`id`,`titol`,`descripcio`,`url_video`,`data_publicacio`,`visualitzacions`,`likes`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 17:58:27 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:58:27 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 17:58:27 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 17:58:27 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:59:24 debug: Executing (default): INSERT INTO `usuaris` (`id`,`username`,`email`,`password`,`nom`,`data_registre`,`idioma`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 17:59:24 debug: Executing (default): INSERT INTO `usuaris` (`id`,`username`,`email`,`password`,`nom`,`data_registre`,`idioma`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 17:59:24 debug: Executing (default): INSERT INTO `videos` (`id`,`titol`,`descripcio`,`url_video`,`data_publicacio`,`visualitzacions`,`likes`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 17:59:24 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:59:24 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 17:59:24 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 17:59:24 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:02:31 debug: Executing (default): INSERT INTO `usuaris` (`id`,`username`,`email`,`password`,`nom`,`data_registre`,`idioma`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:02:31 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:02:31 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:02:31 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:02:49 debug: Executing (default): INSERT INTO `usuaris` (`id`,`username`,`email`,`password`,`nom`,`data_registre`,`idioma`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:02:49 debug: Executing (default): INSERT INTO `usuaris` (`id`,`username`,`email`,`password`,`nom`,`data_registre`,`idioma`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:02:49 debug: Executing (default): INSERT INTO `videos` (`id`,`titol`,`descripcio`,`url_video`,`data_publicacio`,`visualitzacions`,`likes`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7,$8);
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:02:49 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:02:49 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:02:49 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:02:49 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:09:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:09:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:09:59 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:09:59 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:10:09 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:10:09 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:10:09 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:11:25 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:11:25 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:11:25 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:12:48 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:12:48 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:12:48 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:12:48 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:12:48 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:12:48 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:12:48 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:12:48 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:12:48 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 18:12:48 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:12:48 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:13:59 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:13:59 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:13:59 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:13:59 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:13:59 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:13:59 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:13:59 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:13:59 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:15:23 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:15:23 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:15:23 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:15:23 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:15:23 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:15:23 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:15:23 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:15:23 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:15:56 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 18:15:56 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:15:56 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:15:56 debug: Executing (default): SELECT name FROM `sqlite_master` WHERE type='table' and name!='sqlite_sequence';
+2025-03-13 18:15:56 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:15:56 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 18:15:56 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:15:56 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:15:56 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:15:56 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:15:56 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:15:56 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 18:15:56 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:15:56 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:15:56 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:15:56 debug: Executing (default): PRAGMA INDEX_INFO(`unique_usuari_video_valoracio`)
+2025-03-13 18:15:56 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 18:15:56 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:15:56 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:16:01 debug: Executing (default): DROP TABLE IF EXISTS `videos`;
+2025-03-13 18:16:01 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:16:01 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='usuaris';
+2025-03-13 18:16:01 debug: Executing (default): SELECT name FROM `sqlite_master` WHERE type='table' and name!='sqlite_sequence';
+2025-03-13 18:16:01 debug: Executing (default): CREATE TABLE IF NOT EXISTS `videos` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `titol` VARCHAR(255) NOT NULL, `descripcio` TEXT, `url_video` VARCHAR(255) NOT NULL, `data_publicacio` DATETIME, `visualitzacions` INTEGER DEFAULT 0, `likes` INTEGER DEFAULT 0, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:16:01 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:16:01 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:16:01 debug: Executing (default): DROP TABLE IF EXISTS `usuaris`;
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:16:01 debug: Executing (default): CREATE TABLE IF NOT EXISTS `usuaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` VARCHAR(255) NOT NULL UNIQUE, `email` VARCHAR(255) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `nom` VARCHAR(255), `data_registre` DATETIME, `idioma` VARCHAR(255), `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+2025-03-13 18:16:01 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:16:01 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`usuaris`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_1`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_usuaris_2`)
+2025-03-13 18:16:01 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:16:01 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='comentaris';
+2025-03-13 18:16:01 debug: Executing (default): DROP TABLE IF EXISTS `comentaris`;
+2025-03-13 18:16:01 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:16:01 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:16:01 debug: Executing (default): CREATE TABLE IF NOT EXISTS `comentaris` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `text` TEXT NOT NULL, `data_creacio` DATETIME, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`comentaris`)
+2025-03-13 18:16:01 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:16:01 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='valoracions';
+2025-03-13 18:16:01 debug: Executing (default): DROP TABLE IF EXISTS `valoracions`;
+2025-03-13 18:16:01 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:16:01 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:16:01 debug: Executing (default): CREATE TABLE IF NOT EXISTS `valoracions` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `valoracio` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `usuari_id` INTEGER REFERENCES `usuaris` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `video_id` INTEGER REFERENCES `videos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE);
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`valoracions`)
+2025-03-13 18:16:01 debug: Executing (default): CREATE UNIQUE INDEX IF NOT EXISTS unique_usuari_video_valoracio
+        ON valoracions (usuari_id, video_id);
+2025-03-13 18:16:01 debug: Executing (default): SELECT name FROM sqlite_master WHERE type='table' AND name='videos';
+2025-03-13 18:16:01 debug: Executing (default): PRAGMA INDEX_LIST(`videos`)
+2025-03-13 18:16:36 debug: Executing (default): PRAGMA foreign_keys = OFF
+2025-03-13 18:16:36 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:16:36 debug: Executing (default): PRAGMA foreign_keys = ON
+2025-03-13 18:16:36 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:16:36 debug: Executing (default): SELECT name FROM `sqlite_master` WHERE type='table' and name!='sqlite_sequence';
+2025-03-13 18:24:12 debug: Executing (default): PRAGMA foreign_keys = OFF
+2025-03-13 18:24:12 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:24:12 debug: Executing (default): PRAGMA foreign_keys = ON
+2025-03-13 18:24:12 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:24:12 debug: Executing (default): SELECT name FROM `sqlite_master` WHERE type='table' and name!='sqlite_sequence';
+2025-03-13 18:24:30 debug: Executing (default): PRAGMA foreign_keys = OFF
+2025-03-13 18:24:30 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:24:30 debug: Executing (default): PRAGMA foreign_keys = ON
+2025-03-13 18:24:30 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:24:30 debug: Executing (default): SELECT name FROM `sqlite_master` WHERE type='table' and name!='sqlite_sequence';
+2025-03-13 18:25:16 debug: Executing (default): PRAGMA foreign_keys = OFF
+2025-03-13 18:25:16 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:25:16 debug: Executing (default): PRAGMA foreign_keys = ON
+2025-03-13 18:25:16 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:25:16 debug: Executing (default): SELECT name FROM `sqlite_master` WHERE type='table' and name!='sqlite_sequence';
+2025-03-13 18:25:27 debug: Executing (default): PRAGMA foreign_keys = OFF
+2025-03-13 18:25:27 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:25:27 debug: Executing (default): PRAGMA foreign_keys = ON
+2025-03-13 18:25:27 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:25:27 debug: Executing (default): SELECT name FROM `sqlite_master` WHERE type='table' and name!='sqlite_sequence';
+2025-03-13 18:40:32 debug: Executing (default): PRAGMA foreign_keys = OFF
+2025-03-13 18:40:32 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:40:32 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:40:32 debug: Executing (default): PRAGMA foreign_keys = ON
+2025-03-13 18:40:32 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:40:32 debug: Executing (default): SELECT name FROM `sqlite_master` WHERE type='table' and name!='sqlite_sequence';
+2025-03-13 18:41:53 debug: Executing (default): PRAGMA foreign_keys = OFF
+2025-03-13 18:41:53 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:41:53 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:41:53 debug: Executing (default): PRAGMA foreign_keys = ON
+2025-03-13 18:41:53 debug: Executing (default): SELECT 1+1 AS result
+2025-03-13 18:41:53 debug: Executing (default): SELECT name FROM `sqlite_master` WHERE type='table' and name!='sqlite_sequence';
